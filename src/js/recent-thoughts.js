@@ -2,6 +2,7 @@
     'use strict';
 
     window.thoughter = window.thoughter || {};
+    //name space
 
     /**
      * Shows the provided thought data on the page in the `.recent` element
