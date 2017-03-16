@@ -58,23 +58,32 @@
         //testing that the recent element has children and that it has more
         //then one
         expect(recentElement.childNodes.length).to.equal(3);
-        //selected recent element dug into child nodes got length of child node_modules
+        //selected recent element dug into child nodes got length of child nodes
         //and tested if the length was equal to the amount of thoughts i gave the fn
         //console.log(window.thoughter.showRecent);
         //want to test that articles are being created
         //console.info(document.querySelector('.recent'));
-        expect(recentElement.childNodes[1].id).to.equal('thought-yyyy');
+        //expect(recentElement.childNodes[1].id).to.equal('thought-yyyy');
         //console.log(recentElement.childNodes[1]);
         //tapping into first article
       });
-
+      it('should pass an array with 1obj', function(){
+        let recentElement = document.querySelector('.recent');
+        window.thoughter.showRecent([hi]);
+        expect(recentElement.childNodes.length).to.equal(1);
+      });
+      it('should pass in an empty array', function(){
+        let article = document.querySelector('.recent');
+        window.thoughter.showRecent([]);
+        expect(article.length).to.equal();
+      });
     });
     //where new describe begins - 3rd one
     //every function has its own describe
     describe('get recent', function(){
       let server;
 
-            beforeEach(function() {
+            beforeEach(function(){
                 server = sinon.fakeServer.create();
                 server.autoRespond = true;
                 server.respondWith(
@@ -99,11 +108,11 @@
             it('should return data back from server', function(){
               let result = window.thoughter.getRecent();
                   // expect( result ).to.be.an('object');
-                  expect( result.then ).to.be.a('function');
-                  expect( result.catch ).to.be.a('function');
+                  expect(result.then).to.be.a('function');
+                  expect(result.catch).to.be.a('function');
 
                   result
-                      .then(function( data ) {
+                      .then(function(data) {
                           expect(data).to.be.an('array');
                           expect(data.length).to.equal(3);
                           //expect data and we know data is an
