@@ -33,6 +33,7 @@
             thoughtUI.classList.add('panel');
             thoughtUI.classList.add('panel-info');
             thoughtUI.setAttribute('id', 'thought-' + thought.id);
+            //66
             thoughtUI.innerHTML = `<header class='panel-heading'>Posted ${thoughts.createTime}</header>
                 <main class='panel-body'>
                     <p>${thought.content}</p>
@@ -47,7 +48,9 @@
      * @param  {Number} count  How many thoughts to limit to, must be a positive number (defaults to 10)
      * @return {Promise}       The resolved promise will have the data array as the argument
      */
-    window.thoughter.getRecent = function getRecent(count = 10) {
+    window.thoughter.getRecent = function getRecent(numb = 10) {
+      let count = numb;
+
         if (typeof(count) !== 'number' || count < 1) {
             return Promise.reject('Sorry, but the count must be a positive number');
         }
