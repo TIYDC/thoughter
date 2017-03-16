@@ -8,19 +8,27 @@
      * Shows the provided thought data on the page in the `.recent` element
      *
      * @param  {Array}  thoughts The array of thought objects to display
+     *this function takes an array as an arg and does a lot of dom manipulation
+     *so what we're gunna test is whethere or not the corrext dom manip is happening
      * @return {void}
      */
     window.thoughter.showRecent = function showRecent(thoughts = []) {
         if (!Array.isArray(thoughts)) {
             return;
         }
-
-        recent = document.querySelector('.recent');
+        //element(ex section/main) with a class of recent
+        //trying to find something with the class of recent
+        let recent = document.querySelector('.recent');
+        //when it finds something with the class of recent
         thoughts.forEach(function showThought(thought) {
+        //for each thought do the stuff down here
+        //if each thought does not have thought.content, thought.createTime
+        //or a thought.id then return and dont do that stuff
             if (!thought.content || !thought.createTime || !thought.id) {
-                return;
+                return;//dont want to go down cus ill get an error
             }
-
+            //it creates for each thought a new article element and then
+            //appends it to the recent element
             let thoughtUI = document.createElement('article');
             thoughtUI.classList.add('panel');
             thoughtUI.classList.add('panel-info');
