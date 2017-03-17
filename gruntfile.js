@@ -6,17 +6,41 @@ module.exports = function configureGrunt(gruntConfiguration) {
 
     copy: {
 
-      htmlCopy:{
-        files: [
-          {
-            cwd: 'src/',
-            src: [ '*html' ],
-            dest: 'build/',
-            expand: true
-          }
-        ]
-      }
+    copyjs:{
+          files: [
+            {
+              cwd: 'src/js/',
+              src: [ '*.js' ],
+              dest: 'build/js',
+              expand: true
+            }
+          ]
+        },
+
+    htmlcopy:{
+      files: [
+        {
+          cwd: 'src/',
+          src: [ '*.html' ],
+          dest: 'build/',
+          expand: true
+        }
+      ]
     },
+
+
+  copyjquery:{
+          files: [
+            {
+              cwd: 'node_modules/jquery/dist',
+              src: [ 'jquery.js' ],
+              dest: 'build/js/vendor',
+              expand: true
+            }
+          ]
+        }
+    },
+
     jshint: {
       options: {
         jshintrc: '.jshintrc'
