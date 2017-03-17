@@ -13,6 +13,18 @@
     articleTag.parentNode.removeChild(articleTag);
   });
 
+  it('should be a function', function(){
+
+  });
+
+  it('should create articles for every thought it is given', fucntion(){
+    let result = window.thoughter.showRecent([
+      {content:'example text', createTime:9:00 am, id:'test'}
+    ]);
+    let articles = document.querySelectorAll('main.recent article')
+    expect(articles.length).to.equal(1);
+  });
+
   it('is article present', function(){
     window.thoughter.showRecent([{content: 'Steven', createTime: 1983, id: 'human/big-foot'}]);
     let article = document.querySelectorAll('article');
