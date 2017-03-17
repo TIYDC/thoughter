@@ -15,19 +15,42 @@ module.exports = function configureGrunt(gruntConfiguration) {
             expand: true
           }
         ]
+      }
+    },
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc'
       },
+      files:  {
+        src: [ 'src/**/*.js' ]  // look any sub directory of src that includes a .js file
+      }
+    },
 
-//enter sass
-//enter jshint
-//enter karma
 
+    sass: {                              // Task
+      dist: {                            // Target
+        options: {                       // Target options
+          style: 'expanded'
+        },
+        files: {                         // Dictionary of files
+          'main.css': 'src/sass/main.scss'       // 'destination': 'source'
+
+        }
+      }
+    },
+
+    karma: {
+      unit: {
+        configFile: 'config.js'
+      }
     }
+
+
   });
 
   require('load-grunt-tasks')(gruntConfiguration);
 
-  // gruntConfiguration.registerTask( 'build', ['jshint', 'karma', 'clean', 'copy', 'sass' ] );
-  gruntConfiguration.registerTask( 'build', ['clean', 'copy' ] );
+  gruntConfiguration.registerTask( 'build', ['clean', 'copy', 'jshint', 'karma', 'sass' ] );
 
 
 };
