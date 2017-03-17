@@ -26,6 +26,7 @@ module.exports = function configureGrunt(gruntConfig){
                   ]
                }
            },
+
            sass: {//within the sass what we're creating is a task that looks for
            //all our sass/css and then compiling all of it into one pile called
            //style.css and putting our style.css file in our build directory
@@ -55,30 +56,35 @@ module.exports = function configureGrunt(gruntConfig){
                }
 
            },
-          //
-          //  karma: {
-          //
-          //      all: {
-          //          options: {
-          //              // These came from my karma configuration file...
-          //              // they are the SAME options!
-          //              // IF you use grunt to run karma (tests), then we
-          //              // do NOT also need a app.conf.js file for karma separately
-          //              frameworks: [ 'mocha', 'chai' ],
-          //              browsers: [ 'Chrome' ],
-          //              singleRun: true,
-          //              files: [
-          //                  'src/**/*.js',
-          //                  'node_modules/fetch-mock/es5/client-browserified.js',
-          //                  'test/specs/**/*.js'
-          //              ]
-          //          }
-          //      }
-          //
-          //  }
+
+           karma: {
+
+               all: {
+                   options: {
+                       // These came from my karma configuration file...
+                       // they are the SAME options!
+                       // IF you use grunt to run karma (tests), then we
+                       // do NOT also need a app.conf.js file for karma separately
+                       frameworks: [ 'mocha', 'chai' ],
+                       browsers: [ 'Chrome' ],
+                       singleRun: true,
+                       files: [
+                           'src/**/*.js',
+                           'node_modules/sinon/pkg/sinon-2.0.0.js',
+                           'test/specs/**/*.js'
+                       ]
+                   }
+               }
+
+           }
 
   });
   require('load-grunt-tasks')(gruntConfig);
   //whenever i run grunt build in  my terminal do these things in this order
-  gruntConfig.registerTask( 'build', [ 'jshint', 'copy', 'sass' ] );
+  //out of convention building our build directory
+  //we dont want to put anything in our build directory thats broken
+  //thats why first jshint to make sure theres no syntax errors and then why
+  //i test my files next to make sure nothing breaks and then if those two pass
+  //i know i have good code so i can copy those files and put into build directory
+  gruntConfig.registerTask( 'build', [ 'jshint', 'karma', 'copy', 'sass' ] );
 };
