@@ -81,11 +81,26 @@ module.exports = function configureGrunt(gruntConfig){
                            'src/**/*.js',
                            'node_modules/sinon/pkg/sinon-2.0.0.js',
                            'test/specs/**/*.js'
-                       ]
+                       ],
+                       preprocessors: {//what files we want to be pre processed
+                            'src/**/*.js': ['coverage'],//all the files were testing
+                            //want coverage plug in to watch during those tests
+                            //then generate a summary
+                            //coverage is the plug in and dots is part of how they report
+                            //back
+                       },
+                       reporters: ['dots', 'coverage'],//in that summary i want
+                       //dots which shows me the number of tests and a color
+                       //indication of whether or not they passed
+                       coverageReporter: {
+                         type: 'text-summary'//so it doesnt come out looking all codey
+                         //makes it look clean in terminal
+                       }
                    }
                }
 
            }
+
 
   });
   require('load-grunt-tasks')(gruntConfig);
@@ -98,4 +113,5 @@ module.exports = function configureGrunt(gruntConfig){
   //the clean task deletes the whole build directory and is the first task that runs
   //build = running all of these tasks. you can name it whatever
   gruntConfig.registerTask( 'build', [ 'clean', 'jshint', 'karma', 'copy', 'sass' ] );
+  //gruntConfig.registerTask( 'watch', ['build']);
 };
