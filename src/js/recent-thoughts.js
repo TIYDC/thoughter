@@ -14,10 +14,10 @@
             return;
         }
 
-        recent = document.querySelector('.recent');
+        let recent = document.querySelector('.recent');
         thoughts.forEach(function showThought(thought) {
             if (!thought.content || !thought.createTime || !thought.id) {
-                return;
+                return 'please enter thoughter message';  //returns to api?
             }
 
             let thoughtUI = document.createElement('article');
@@ -31,6 +31,7 @@
             recent.appendChild(thoughtUI);
         });
     };
+
 
     /**
      * Retrieves the most recent thoughts, using the provided count as the limit
