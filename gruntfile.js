@@ -1,11 +1,10 @@
 module.exports = function configureGrunt(gruntConfig){
   gruntConfig.initConfig({
-    clean: [ 'build/' ],
+    clean: [ 'build/' ],//cleaning
 
-           copy: {  // task name (defined by the plugin)
+           copy: {
 
-               copythehtml: { // target name (I make it up)
-                   // the configuration for THIS target, in THIS task is below
+               copythehtml: {
                    files: [
                        {
                            cwd: 'src/',//to get into source
@@ -21,6 +20,16 @@ module.exports = function configureGrunt(gruntConfig){
                           cwd: 'src/js/',
                           src: ['*.js'],
                           dest: 'build/js/', // slash at the end means i want you to find the js and go in it and thats where i want you to put the files
+                          expand: true
+                    }
+                  ]
+               },
+               copythejquery: {//copying dependency files into js build folder so my app has proper linkage
+                  files: [
+                    {
+                          cwd: 'node_modules/jquery/dist/',
+                          src: ['jquery.js'],//jquery is js
+                          dest: 'build/js/vendor/',//so now we know the jquery file will be copied into our build/js/vendor folder//then when you run it you can see its created on right
                           expand: true
                     }
                   ]
@@ -44,7 +53,7 @@ module.exports = function configureGrunt(gruntConfig){
 
            },
 
-           jshint: {
+           jshint: {//linting
 
                appjs: {
                    options: {
@@ -57,18 +66,18 @@ module.exports = function configureGrunt(gruntConfig){
 
            },
 
-           karma: {
-
+           karma: {//testing
+                   //configuring karma with grunt letting grunt know that karma works
+                   //with mocha and chai frame works and to launch testing within karma browser
                all: {
                    options: {
-                       // These came from my karma configuration file...
-                       // they are the SAME options!
-                       // IF you use grunt to run karma (tests), then we
-                       // do NOT also need a app.conf.js file for karma separately
                        frameworks: [ 'mocha', 'chai' ],
                        browsers: [ 'Chrome' ],
                        singleRun: true,
-                       files: [
+                       files: [//test all of the files that end in extension .js
+                         //when i use my sinnon server find node modules file with that code
+                         //and test code is written my test/specs folder with any file that has
+                         //a .js extention
                            'src/**/*.js',
                            'node_modules/sinon/pkg/sinon-2.0.0.js',
                            'test/specs/**/*.js'
@@ -86,5 +95,7 @@ module.exports = function configureGrunt(gruntConfig){
   //thats why first jshint to make sure theres no syntax errors and then why
   //i test my files next to make sure nothing breaks and then if those two pass
   //i know i have good code so i can copy those files and put into build directory
-  gruntConfig.registerTask( 'build', [ 'jshint', 'karma', 'copy', 'sass' ] );
+  //the clean task deletes the whole build directory and is the first task that runs
+  //build = running all of these tasks. you can name it whatever
+  gruntConfig.registerTask( 'build', [ 'clean', 'jshint', 'karma', 'copy', 'sass' ] );
 };
