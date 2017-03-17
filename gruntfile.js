@@ -14,34 +14,47 @@ module.exports = function configureGrunt(gruntConfig){
                            expand: true
                        }
                    ]
+               },
+               copythejs: {
+                  files: [
+                    {
+                          cwd: 'src/js/',
+                          src: ['*.js'],
+                          dest: 'build/js/', // slash at the end means i want you to find the js and go in it and thats where i want you to put the files
+                          expand: true
+                    }
+                  ]
+               }
+           },
+           sass: {//within the sass what we're creating is a task that looks for
+           //all our sass/css and then compiling all of it into one pile called
+           //style.css and putting our style.css file in our build directory
+           //style.css will only ever be in the build
+               all: {//
+                   //
+                   files: {
+                       //dest/source
+                       //dest - where were gunna put whatever we say is our source into
+                       //> creates a new file called style.css and puts in our main.scss
+                       //and everything that exports into it
+                       'build/style.css' : 'src/sass/main.scss'
+                   }
                }
 
-           }
+           },
 
-          //  sass: {  // task name
-          //
-          //      all: {  // target name
-          //          // configuration for this target
-          //          files: {
-          //              //  DESTINATION    :      SOURCE
-          //              'build/style.css' : 'src/sass/main.scss'
-          //          }
-          //      }
-          //
-          //  },
-          //
-          //  jshint: {
-          //
-          //      appjs: {
-          //          options: {
-          //              jshintrc: '.jshintrc'
-          //          },
-          //          files: {
-          //              src: [ 'src/**/*.js' ]
-          //          }
-          //      }
-          //
-          //  },
+           jshint: {
+
+               appjs: {
+                   options: {
+                       jshintrc: '.jshintrc'
+                   },
+                   files: {
+                       src: [ 'src/**/*.js' ]
+                   }
+               }
+
+           },
           //
           //  karma: {
           //
@@ -67,5 +80,5 @@ module.exports = function configureGrunt(gruntConfig){
   });
   require('load-grunt-tasks')(gruntConfig);
   //whenever i run grunt build in  my terminal do these things in this order
-  gruntConfig.registerTask( 'build', [ 'copy' ] );
+  gruntConfig.registerTask( 'build', [ 'jshint', 'copy', 'sass' ] );
 };
