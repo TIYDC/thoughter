@@ -15,15 +15,20 @@
           document.querySelector('body').appendChild(recentTag);
         });
 
-        it('should be a function', function(){
-          expect(window.thoughter.showRecent).to.be.a('function');
+        afterEach(function(){
+
+          let recentTag =  document.querySelector('main');
+          recentTag.className = 'recent';
+          recentTag.parentNode.removeChild(recentTag);
 
         });
-
+        it('should be a function', function(){
+          expect(window.thoughter.showRecent).to.be.a('function');
 
       });
 
 
     });
   });
+});
 }());
