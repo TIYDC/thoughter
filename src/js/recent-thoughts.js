@@ -11,7 +11,7 @@
      */
     window.thoughter.showRecent = function showRecent(thoughts = []) {
         if (!Array.isArray(thoughts)) {
-            return;
+            return 'invalid parameters. array parameters only';
         }
 
         recent = document.querySelector('.recent');
