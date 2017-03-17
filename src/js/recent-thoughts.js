@@ -10,25 +10,36 @@
      * @return {void}
      */
     window.thoughter.showRecent = function showRecent(thoughts = []) {
+      // this is creating a function (showRecent)which takes an arg (thought = [])
         if (!Array.isArray(thoughts)) {
+          //if (thoughts) is not an array return nothing,
             return;
         }
 
-        recent = document.querySelector('.recent');
-        thoughts.forEach(function showThought(thought) {
+        let recent = document.querySelector('.recent');
+        //selecting an element with the class name of recent and defining recent
+        thoughts.forEach(function showThought(thoughts) {
+          //for each object  in the array called  thoughts
             if (!thought.content || !thought.createTime || !thought.id) {
+              //if the thought has no content or createTime or an id we don't want it, so we return
                 return;
             }
 
             let thoughtUI = document.createElement('article');
+            //creating an element (article)  while setting it to a variable
             thoughtUI.classList.add('panel');
+            //adding the class panel to the article 'thoughtUI'
             thoughtUI.classList.add('panel-info');
+            //adding class panel-info to the article 'thoughtUI'
             thoughtUI.setAttribute('id', 'thought-' + thought.id);
+            //setting an id to thoughtUI
             thoughtUI.innerHTML = `<header class='panel-heading'>Posted ${thoughts.createTime}</header>
                 <main class='panel-body'>
                     <p>${thought.content}</p>
                 </main>`;
+                //adding HTML to the article
             recent.appendChild(thoughtUI);
+            //adding the recent class to the article thoughtUI
         });
     };
 
