@@ -13,6 +13,13 @@ module.exports = function configureGrunt(gruntConfig){
          }
         ]
       }
+    },
+    sass: {
+      all: {
+        files: {
+          'build/style.csss':'src/sass/main.scss'
+        }
+      }
     }
 
   });
@@ -20,5 +27,5 @@ module.exports = function configureGrunt(gruntConfig){
 
   //create a task called "alias" to run multiple OTHER tasks
   //can create more aliases!
-  gruntConfig.registerTask('build',['clean','copy']);
+  gruntConfig.registerTask('build',['clean','copy','sass']);
 };
