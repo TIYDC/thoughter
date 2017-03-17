@@ -2,6 +2,7 @@
   'use strict';
   //this is where i created the 3 thoughts
   let expect = window.chai.expect;
+  //because lazy
   let hi = {};
   hi.content = 'hi';
   hi.createTime = new Date();
@@ -48,7 +49,7 @@
         let mainTag = document.querySelector('main');
         mainTag.parentNode.removeChild(mainTag);
         //after each test assertion in this describe i find
-        //a main element and remove it
+        //a main/tag element and remove it
       });
       //keep on same cus its not imbeded in fn
       it('should create a new article element for every thought', function(){
@@ -68,12 +69,12 @@
         //tapping into first article
       });
       it('should pass an array with 1obj', function(){
-        let recentElement = document.querySelector('.recent');
+        let recentElement = document.querySelector('main.recent');
         window.thoughter.showRecent([hi]);
         expect(recentElement.childNodes.length).to.equal(1);
       });
       it('should pass in an empty array', function(){
-        let article = document.querySelector('.recent');
+        let article = document.querySelector('main.recent');
         window.thoughter.showRecent([]);
         expect(article.length).to.equal();
       });
