@@ -14,6 +14,29 @@ module.exports = function configureGrunt(gruntConfig){
         ]
       }
     },
+    copythejquery: {
+       files: [
+         {
+           cwd: 'node_modules/jquery/dist',
+           src: ['jquery.js'],
+           dest: 'build/js/vendor/',
+           expand: true
+         }
+       ]
+
+     },
+
+     copythejs:{
+       files: [
+         {
+           cwd: 'src/js',
+           src: ['*.js'],
+           dest: 'build/js/',
+           expand: true
+         }
+       ]
+     },
+
     sass: {
       all: {
         files: {
@@ -21,13 +44,30 @@ module.exports = function configureGrunt(gruntConfig){
         }
       }
     },
-    jshint: {
+   jshint: {
       appjs: {
         options: {
           jshintrc: '.jshintrc'
         },
         files: {
           src: ['src/**/*.js']
+        }
+      }
+    },
+    karma: {
+      all: {
+
+        options:{
+          //if Im using grunt to run karma (tests), then we DON'T need a app.conf.js
+          //file for karma separatelly
+          //Same options from Conf.js file
+          frameworks: ['mocha', 'chai'],
+          browsers: ['Chrome'],
+          singleRun: true,
+          files: [
+            'src/**/*.js',
+            'tests/specs/**/*.js'
+          ]
         }
       }
     }
@@ -37,5 +77,5 @@ module.exports = function configureGrunt(gruntConfig){
 
   //create a task called "alias" to run multiple OTHER tasks
   //can create more aliases!
-  gruntConfig.registerTask('build',['jshint','clean','copy','sass']);
+  gruntConfig.registerTask('build',['jshint','karma','clean','copy','sass']);
 };
