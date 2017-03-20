@@ -20,6 +20,16 @@ module.exports = function configureGrunt(gruntConfig){
           'build/style.csss':'src/sass/main.scss'
         }
       }
+    },
+    jshint: {
+      appjs: {
+        options: {
+          jshintrc: '.jshintrc'
+        },
+        files: {
+          src: ['src/**/*.js']
+        }
+      }
     }
 
   });
@@ -27,5 +37,5 @@ module.exports = function configureGrunt(gruntConfig){
 
   //create a task called "alias" to run multiple OTHER tasks
   //can create more aliases!
-  gruntConfig.registerTask('build',['clean','copy','sass']);
+  gruntConfig.registerTask('build',['jshint','clean','copy','sass']);
 };
