@@ -29,9 +29,9 @@ module.exports = function configureGrunt(gruntConfig){
      copythejs:{
        files: [
          {
-           cwd: 'src/js',
-           src: ['*.js'],
-           dest: 'build/js/',
+           cwd: 'src/',
+           src: ['**/*.js'],
+           dest: 'build/',
            expand: true
          }
        ]
