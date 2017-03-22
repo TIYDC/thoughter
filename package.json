@@ -1,38 +1,33 @@
 {
+  "name": "thoughter",
+  "version": "1.0.0",
+  "author": "Brian Fiala",
+  "license": "ISC",
+  "description": "Definitely not a Twitter clone.",
+  "main": "src/js/recent-thoughts.js",
+  "scripts": {
+    "test": "karma start test.conf.js"
+  },
+  "dependencies": {
+    "fetch-mock": "^5.9.4",
+    "jquery": "^3.2.0"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
+    "fetch-mock": "^5.9.4",
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-karma": "^2.0.0",
     "karma": "^1.5.0",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-mocha": "^1.3.0",
-    "mocha": "^3.2.0"
-  },
-  "name": "thoughter",
-  "description": "Definitely not a Twitter clone.",
-  "version": "1.0.0",
-  "main": "recent-thoughts.js",
-  "directories": {
-    "test": "test"
-  },
-  "dependencies": {
-    "chai": "^3.5.0",
-    "jquery": "^3.2.0",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-chai": "^0.1.0",
-    "karma-mocha": "^1.3.0",
-    "karma": "^1.5.0"
-  },
-  "scripts": {
-    "test": "mocha"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BrianFiala/thoughter.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/BrianFiala/thoughter/issues"
-  },
-  "homepage": "https://github.com/BrianFiala/thoughter#readme"
+    "karma-requirejs": "^1.1.0",
+    "load-grunt-tasks": "^3.5.2",
+    "mocha": "^3.2.0",
+    "requirejs": "^2.3.3"
+  }
 }
