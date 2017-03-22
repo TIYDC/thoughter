@@ -14,13 +14,13 @@
       beforeEach(function () {
         let thoughtList = document.createElement('section');
         thoughtList.classList.add('recent');
-        console.info(document.querySelector('body'));
+        console.info('this is where I am using the console' + document.querySelector('body'));
         document.querySelector('body').appendChild(thoughtList);
       });
 
       afterEach(function() {
         (document.querySelectorAll('.recent')).forEach(function (recentSection) {
-          recentSection.parentNode.remove(recentSection);
+          recentSection.parentNode.removeChild(recentSection);
         });
       });
 
@@ -59,8 +59,8 @@
           {'id': 'someNum', 'createTime': '9million o\'clock', 'content': 'No thoughts were harmed in the making of this thought object'},
           {'id': 'someNum', 'content': 'This is an invalid thought. A thought was harmed in the making of this thought object'}];
         showRecent(thoughts);
-        let thoughtPanel = document.querySelectorAll('article.panel');
-        expect(thoughtPanel).length.to.eq(2);
+        let thoughtPanel = document.querySelectorAll('.panel');
+        expect(thoughtPanel.length).to.eq(2);
       });
     });
   });
