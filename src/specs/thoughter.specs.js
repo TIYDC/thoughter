@@ -25,19 +25,19 @@
         it('should be a function', function(){
           expect(window.thoughter.showRecent).to.be.a('function');
 
-      });
+        });
         it('should check for all the properties in each array', function(){
           window.thoughter.showRecent([
-          {
-            content: '',
-            createTime: '',
-            id: ' '
-          }
-        ]);
-        let recent = document.querySelectorAll('main.recent article');
-        expect(recent.length).to.equal(1);
-      });
+            {
+              content: '',
+              createTime: '',
+              id: ' '
+            }
+          ]);
+          let recent = document.querySelectorAll('main.recent article');
+          expect(recent.length).to.equal(1);
         });
+      });
 
     });
   });
