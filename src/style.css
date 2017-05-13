@@ -1,0 +1,19 @@
+header {
+  border-bottom: 1px solid #99bbff; }
+  header h1 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-left: 5em; }
+
+.login form {
+  width: 60%;
+  margin: 0 auto; }
+
+.recent {
+  width: 90%;
+  margin: 0 auto;
+  display: flex; }
+  .recent article {
+    flex: 0 0 calc((100% / $thoughtColumns) - $thoughtMargin); }
+
+/*# sourceMappingURL=style.css.map */
